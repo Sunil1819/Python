@@ -6,7 +6,7 @@ class Hello_J(BaseModel):
     format:str
 @app.get("/helloj")
 @app.get("/helloj/{name}/{format}")
-async def helloj_get(name:str="himakar",format:str="json"):
+async def helloj_get(name:str="viratkohli",format:str="json"):
     return {"name":name,"format":format}
 @app.post("/helloj")
 async def helloj_post(item : Hello_J):
