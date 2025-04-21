@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask,request,render_template
 import os
 app=Flask(__name__)
 f_path=r".\content.txt"
@@ -7,22 +7,21 @@ def index():
     return """
     <html>
         <body>
-            <h1>Welcome to the home page :)</h1>
+            <h1>Welcome</h1>
         </body>
     </html>
     """
-@app.route("/updatefortoday", methods=['GET','POST'])
+@app.route("/update", methods=['GET','POST'])
 def update():
-    if request.method == 'POST':
+    if request.method=='POST':
         con = request.form.get('content',None)
         print(con)
-        
         with open(f_path,'a') as f:
             f.write(con)
         return """
             <html>
                 <body>
-                    <h1>Your form submitted successfulyy....:)</h1>
+                    <h1>submitted successfully</h1>
                 </body>
             </html>
         """
@@ -44,10 +43,10 @@ def share():
     # d = dict(content = lines)
     print(lines)
     return render_template("shared.html",content=lines)
-@app.route("/clearnotepadtxt", methods=['GET'])
+@app.route("/clear", methods=['GET'])
 def clear():
     with open(f_path,'w') as f:
         f.write('')
-    return "Content cleared successfully :)"
-if __name__ == '__main__':
+    return "Content cleared"
+if __name__=='__main__':
     app.run()
